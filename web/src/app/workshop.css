@@ -357,6 +357,14 @@
   overflow: hidden;
 }
 
+.workshop-details-example {
+  margin-bottom: 14px;
+}
+
+.workshop-details-example:last-child {
+  margin-bottom: 0;
+}
+
 .workshop-nested-top,
 .workshop-example-top {
   display: grid;

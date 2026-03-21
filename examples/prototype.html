@@ -317,6 +317,14 @@
       overflow: hidden;
     }
 
+    details.example-card {
+      margin-bottom: 14px;
+    }
+
+    details.example-card:last-child {
+      margin-bottom: 0;
+    }
+
     details.nested > summary,
     details.example-card > summary {
       list-style: none;
@@ -494,7 +502,7 @@
         <span>Tap any card to expand</span>
       </div>
 
-      <details class="card" open>
+      <details class="card">
         <summary>
           <div class="summary-grid">
             <div class="step-badge blue">01</div>
@@ -540,7 +548,7 @@
 
       <div class="arrow">↓</div>
 
-      <details class="card" open>
+      <details class="card">
         <summary>
           <div class="summary-grid">
             <div class="step-badge green">02</div>
@@ -564,7 +572,7 @@
           </div>
 
           <div class="stack">
-            <details class="nested" open>
+            <details class="nested">
               <summary>
                 <div class="nested-top">
                   <div>
@@ -808,7 +816,7 @@
         <p class="small">Remember: Define sets your direction. Model shows the structure. These examples are demonstrations of Step 2 in practice.</p>
       </div>
 
-      <details class="example-card" open>
+      <details class="example-card">
         <summary>
           <div class="example-top">
             <div>

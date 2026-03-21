@@ -41,7 +41,7 @@ export default function Home() {
             <span>Tap any card to expand</span>
           </div>
 
-          <details className="workshop-details-card" open>
+          <details className="workshop-details-card">
             <summary>
               <div className="workshop-summary-grid">
                 <div className="workshop-step-badge blue">01</div>
@@ -100,7 +100,7 @@ export default function Home() {
             ↓
           </div>
 
-          <details className="workshop-details-card" open>
+          <details className="workshop-details-card">
             <summary>
               <div className="workshop-summary-grid">
                 <div className="workshop-step-badge green">02</div>
@@ -131,7 +131,7 @@ export default function Home() {
               </div>
 
               <div className="workshop-stack">
-                <details className="workshop-details-nested" open>
+                <details className="workshop-details-nested">
                   <summary>
                     <div className="workshop-nested-top">
                       <div>
@@ -431,7 +431,7 @@ export default function Home() {
             </p>
           </div>
 
-          <details className="workshop-details-example" open>
+          <details className="workshop-details-example">
             <summary>
               <div className="workshop-example-top">
                 <div>

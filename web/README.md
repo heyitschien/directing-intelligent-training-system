@@ -23,3 +23,12 @@ Open [http://localhost:3000](http://localhost:3000).
 npm run build
 npm start
 ```
+
+## Lint & typecheck
+
+```bash
+npm run lint
+npm run typecheck
+```
+
+From the repo root, `npm run validate` runs web lint + typecheck + build and mobile typecheck (see root [README.md](../README.md)).
