@@ -1,0 +1,494 @@
+/* Ported from examples/prototype.html — Strategist OS visual system
+   Kept separate from globals.css so Turbopack dev does not drop these rules
+   when processing @import "tailwindcss" in the same file. */
+
+:root {
+  --bg: #f7fafb;
+  --surface: #ffffff;
+  --surface-2: #f2f7f9;
+  --text: #1e2a33;
+  --muted: #5b6b75;
+  --line: #e4edf1;
+  --shadow: 0 12px 32px rgba(20, 42, 57, 0.08);
+  --blue: #3b82f6;
+  --green: #10b981;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --purple: #8b5cf6;
+  --teal: #14b8a6;
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --maxw: 460px;
+}
+
+.workshop-root * {
+  box-sizing: border-box;
+}
+
+.workshop-root {
+  scroll-behavior: smooth;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(59, 130, 246, 0.08), transparent 28%),
+    linear-gradient(180deg, #fbfdfe 0%, var(--bg) 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.workshop-app {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 18px 16px 112px;
+  overflow-x: visible;
+}
+
+/* Sticky caused “stuck” feel with flex parents; keep same look, scroll with page */
+.workshop-hero {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.92));
+  border: 1px solid rgba(228, 237, 241, 0.95);
+  box-shadow: var(--shadow);
+  border-radius: 28px;
+  padding: 22px 18px 18px;
+  position: relative;
+  backdrop-filter: blur(12px);
+  margin-bottom: 18px;
+}
+
+.workshop-eyebrow {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.08);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.workshop-hero h1 {
+  font-size: 30px;
+  line-height: 1.05;
+  margin: 14px 0 10px;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+.workshop-hero p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 15px;
+}
+
+.workshop-memory {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(30, 42, 51, 0.98), rgba(39, 55, 66, 0.98));
+  color: #f7fafb;
+}
+
+.workshop-memory .workshop-memory-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.72;
+  margin-bottom: 8px;
+}
+
+.workshop-memory strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 700;
+}
+
+.workshop-mini-flow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.workshop-mini-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  border-radius: 16px;
+  padding: 11px 12px;
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.workshop-arrow {
+  text-align: center;
+  color: #8aa0ad;
+  font-size: 20px;
+  margin: 4px 0 10px;
+  user-select: none;
+}
+
+.workshop-section {
+  margin-top: 14px;
+  scroll-margin-top: 24px;
+}
+
+.workshop-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 2px 12px;
+}
+
+.workshop-section-title h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.workshop-section-title span {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.workshop-details-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.workshop-details-card > summary,
+.workshop-details-nested > summary,
+.workshop-details-example > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 16px;
+  display: block;
+}
+
+.workshop-details-nested > summary,
+.workshop-details-example > summary {
+  padding: 14px;
+}
+
+.workshop-details-card > summary::-webkit-details-marker,
+.workshop-details-nested > summary::-webkit-details-marker,
+.workshop-details-example > summary::-webkit-details-marker {
+  display: none;
+}
+
+.workshop-summary-grid {
+  display: grid;
+  grid-template-columns: 40px 1fr 24px;
+  gap: 12px;
+  align-items: start;
+}
+
+.workshop-step-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: inset 0 -10px 16px rgba(0, 0, 0, 0.08);
+}
+
+.workshop-step-badge.blue {
+  background: linear-gradient(180deg, #60a5fa, var(--blue));
+}
+.workshop-step-badge.green {
+  background: linear-gradient(180deg, #34d399, var(--green));
+}
+.workshop-step-badge.amber {
+  background: linear-gradient(180deg, #fbbf24, var(--amber));
+}
+.workshop-step-badge.red {
+  background: linear-gradient(180deg, #f87171, var(--red));
+}
+.workshop-step-badge.purple {
+  background: linear-gradient(180deg, #a78bfa, var(--purple));
+}
+
+.workshop-step-kicker {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.workshop-step-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+}
+
+.workshop-step-sub {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.workshop-chev {
+  font-size: 20px;
+  color: var(--muted);
+  transform: translateY(2px);
+  transition: transform 0.2s ease;
+}
+
+.workshop-details-card[open] .workshop-chev,
+.workshop-details-nested[open] .workshop-chev,
+.workshop-details-example[open] .workshop-chev {
+  transform: rotate(180deg) translateY(-2px);
+}
+
+.workshop-card-body {
+  padding: 0 16px 18px;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(242, 247, 249, 0.55), rgba(255, 255, 255, 1));
+}
+
+.workshop-lead {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 16px 0 14px;
+}
+
+.workshop-callout {
+  border-left: 4px solid var(--blue);
+  background: rgba(59, 130, 246, 0.06);
+  padding: 12px 12px 12px 14px;
+  border-radius: 0 14px 14px 0;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 14px 0;
+}
+
+.workshop-callout.green {
+  border-left-color: var(--green);
+  background: rgba(16, 185, 129, 0.08);
+}
+.workshop-callout.amber {
+  border-left-color: var(--amber);
+  background: rgba(245, 158, 11, 0.1);
+}
+.workshop-callout.red {
+  border-left-color: var(--red);
+  background: rgba(239, 68, 68, 0.08);
+}
+.workshop-callout.purple {
+  border-left-color: var(--purple);
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.workshop-info-grid {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.workshop-info-box {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  padding: 14px;
+}
+
+.workshop-info-box h3,
+.workshop-info-box h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+}
+
+.workshop-info-box p,
+.workshop-info-box li,
+.workshop-nested-body p,
+.workshop-nested-body li,
+.workshop-example-body p,
+.workshop-example-body li {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+
+.workshop-info-box ul,
+.workshop-nested-body ul,
+.workshop-example-body ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.workshop-stack {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.workshop-details-nested,
+.workshop-details-example {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+.workshop-nested-top,
+.workshop-example-top {
+  display: grid;
+  grid-template-columns: 1fr 20px;
+  gap: 10px;
+  align-items: start;
+}
+
+.workshop-nested-label,
+.workshop-example-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.workshop-nested-title,
+.workshop-example-title {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+
+.workshop-nested-sub,
+.workshop-example-sub {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+.workshop-nested-body,
+.workshop-example-body {
+  padding: 0 14px 14px;
+  border-top: 1px solid var(--line);
+  background: rgba(242, 247, 249, 0.55);
+}
+
+.workshop-chip-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.workshop-chip {
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+.workshop-muted-quote {
+  margin: 14px 0 0;
+  padding: 14px;
+  border-radius: 18px;
+  background: #f8fbfc;
+  border: 1px dashed #d8e5eb;
+  color: #40515d;
+  font-size: 14px;
+  line-height: 1.65;
+  font-style: italic;
+}
+
+.workshop-examples-intro {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 14px;
+}
+
+.workshop-tabbar {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 14px;
+  width: min(calc(100% - 24px), var(--maxw));
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(228, 237, 241, 0.96);
+  box-shadow: var(--shadow);
+  border-radius: 20px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  z-index: 20;
+}
+
+.workshop-tabbar a {
+  text-decoration: none;
+  color: var(--muted);
+  background: #f8fbfc;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: color 0.15s ease;
+}
+
+.workshop-tabbar a:hover {
+  color: var(--text);
+}
+
+.workshop-divider-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #edf5ff;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.workshop-small {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}

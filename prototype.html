@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategist OS</title>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #F7FAFB;
+  margin: 0;
+  color: #1E2A33;
+}
+
+.container {
+  padding: 20px;
+  max-width: 480px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.step {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.content {
+  display: none;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #5B6B75;
+}
+
+.arrow {
+  text-align: center;
+  margin: 10px 0;
+  opacity: 0.4;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h2>🧠 Strategist OS</h2>
+
+<div class="card" onclick="toggle(this)">
+  <div class="step">STEP 1</div>
+  <div class="title">DEFINE (Yi)</div>
+  <div class="content">
+    What do I want?<br>
+    Define outcome, constraints, success.
+  </div>
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="card" onclick="toggle(this)">
+  <div class="step">STEP 2</div>
+  <div class="title">MODEL (Li)</div>
+  <div class="content">
+    Goal<br>
+    Components<br>
+    Interactions<br>
+    Constraints<br>
+    Leverage
+  </div>
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="card" onclick="toggle(this)">
+  <div class="step">STEP 3</div>
+  <div class="title">INTERROGATE</div>
+  <div class="content">
+    What am I missing?<br>
+    Where does this break?<br>
+    What matters most?
+  </div>
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="card" onclick="toggle(this)">
+  <div class="step">STEP 4</div>
+  <div class="title">EXECUTE</div>
+  <div class="content">
+    Apply leverage<br>
+    Take action
+  </div>
+</div>
+
+<div class="arrow">↓</div>
+
+<div class="card" onclick="toggle(this)">
+  <div class="step">STEP 5</div>
+  <div class="title">REFLECT</div>
+  <div class="content">
+    Learn<br>
+    Improve<br>
+    Iterate
+  </div>
+</div>
+
+</div>
+
+<script>
+function toggle(el) {
+  let content = el.querySelector(".content");
+  content.style.display = content.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>

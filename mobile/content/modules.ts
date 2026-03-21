@@ -1,0 +1,251 @@
+/**
+ * Canonical learning content — derived from thinking-principle-gpt-raw.md
+ * Quotes and prompts preserved verbatim where marked as such in source.
+ */
+
+import type { ContentModule } from '@/types/content';
+
+export const modules: ContentModule[] = [
+  {
+    module_id: 'core',
+    title: 'The Strategist OS',
+    subtitle: 'Zhuge Liang × Elite CEO × You',
+    source_block: 'strategist_os_intro',
+    visual_type: 'overview',
+    source_excerpt: `# THE STRATEGIST OS\n*(Zhuge Liang × Elite CEO × You)*\nThis is how great minds think when they work with intelligence—human or AI.`,
+    body: [
+      'This is how great minds think when they work with intelligence—human or AI.',
+    ],
+    reflection_prompt: 'What outcome are you steering toward today?',
+  },
+  {
+    module_id: 'intent',
+    title: 'Clarity of intent',
+    subtitle: 'Yi → 意',
+    source_block: 'I_intent',
+    visual_type: 'compass',
+    source_excerpt: 'FIRST PRINCIPLE: CLARITY OF INTENT — training checklist and strategist vs vague asks.',
+    body: [
+      'If Zhuge Liang sat with you, he would not start solving.',
+      'They ask AI vague questions. A strategist asks with outcome, skills, constraints, and time.',
+      'Specific intent compresses infinite possibilities into actionable strategy.',
+      'This alone puts you in the top 5%.',
+    ],
+    quotes: [{ text: 'What is the outcome you seek… precisely?' }],
+    training_checklist: [
+      'Outcome (what exactly must happen?)',
+      'Time horizon',
+      'Constraints',
+      'Success metric',
+    ],
+    weak_strong_examples: {
+      weak: '"Help me build a business" / "Give me ideas"',
+      strong:
+        '"Design a system that generates $10k/month within 6 months using my current skills: X, constraints: Y, and available time: Z."',
+    },
+    reflection_prompt: 'Before your next ask: outcome, horizon, constraints, metric — write them in one line.',
+  },
+  {
+    module_id: 'structured',
+    title: 'Structured thinking',
+    subtitle: 'Li → 理',
+    source_block: 'II_structured',
+    visual_type: 'layered_cards',
+    source_excerpt: '3-Layer Thinking Model + YouTube example.',
+    body: [
+      'This is where CEOs and strategists dominate.',
+      'They don’t think in chaos. They think in models.',
+      'When you ask AI like this, it becomes a strategist, not a search engine.',
+    ],
+    layers: [
+      {
+        title: 'System',
+        bullets: ['What are the components?', 'How do they interact?'],
+      },
+      {
+        title: 'Levers',
+        bullets: ['What variables actually move the outcome?'],
+      },
+      {
+        title: 'Strategy',
+        bullets: ['What sequence of actions changes those variables?'],
+      },
+    ],
+    examples: [
+      { label: 'Normal', content: '"Grow my YouTube channel"' },
+      {
+        label: 'Strategist',
+        content:
+          'System: content → distribution → retention → monetization\nLevers: CTR, watch time, posting frequency\nStrategy: test thumbnails → increase retention → scale winners',
+      },
+    ],
+    reflection_prompt: 'Name system, levers, and one strategy sequence for your current problem.',
+  },
+  {
+    module_id: 'questioning',
+    title: 'Elite questioning',
+    subtitle: 'Bridge to intelligence',
+    source_block: 'III_questioning',
+    visual_type: 'drill_deck',
+    source_excerpt: 'Elon / Bezos pattern + 5 Elite Question Types.',
+    body: [
+      'This is the bridge between you and intelligence.',
+      'They don’t ask: “What should I do?”',
+      'This is how you extract intelligence, not just receive answers.',
+    ],
+    quotes: [
+      { text: 'What are the first principles?' },
+      { text: 'What are we missing?' },
+      { text: 'Where does this break at scale?' },
+      { text: 'What would make this 10x better?' },
+    ],
+    question_types: [
+      {
+        id: 'fp',
+        title: 'First principles',
+        quote: 'Break this down to fundamental truths.',
+      },
+      {
+        id: 'blind',
+        title: 'Blind spots',
+        quote: 'What am I not seeing that could destroy this plan?',
+      },
+      {
+        id: 'lever',
+        title: 'Lever identification',
+        quote: 'What 20% of actions drive 80% of results here?',
+      },
+      {
+        id: 'opt',
+        title: 'Optimization',
+        quote: 'How do we make this 10x more effective?',
+      },
+      {
+        id: 'path',
+        title: 'Strategic path',
+        quote: 'What is the most efficient sequence of moves from A → B?',
+      },
+    ],
+    reflection_prompt: 'Which one question would change your next decision most?',
+  },
+  {
+    module_id: 'mindset',
+    title: 'The Zhuge Liang layer',
+    subtitle: 'Mindset',
+    source_block: 'IV_mindset',
+    visual_type: 'calm_chamber',
+    source_excerpt: 'Core traits, key shift, depth + timing.',
+    body: [
+      'This is what makes everything above work.',
+      'AI gives you speed. Zhuge Liang gives you depth + timing.',
+    ],
+    traits: [
+      'Calm under pressure',
+      'Long-term thinking',
+      'Precision over noise',
+      'Discipline in execution',
+    ],
+    quotes: [
+      { text: "Don't rush to answers.\nSit with the problem longer than others." },
+    ],
+    reflection_prompt: 'What problem deserves five more minutes before you answer?',
+  },
+  {
+    module_id: 'convergence',
+    title: 'The convergence',
+    subtitle: 'Your new thinking flow',
+    source_block: 'V_convergence',
+    visual_type: 'loop_diagram',
+    source_excerpt: 'Steps 1–5 + This loop = Strategist OS',
+    body: ['Now combine everything.', 'This loop = Strategist OS'],
+    loop_steps: [
+      {
+        step: 1,
+        title: 'DEFINE (Yi)',
+        bullets: ['What exactly am I trying to achieve?'],
+      },
+      {
+        step: 2,
+        title: 'MODEL (Li)',
+        bullets: ['What system am I operating in?'],
+      },
+      {
+        step: 3,
+        title: 'INTERROGATE',
+        subtitle: 'Elite Questions',
+        bullets: ['Where are the leverage points?', 'What am I missing?'],
+      },
+      {
+        step: 4,
+        title: 'EXECUTE',
+        subtitle: 'Strategy',
+        bullets: ['What sequence of actions wins?'],
+      },
+      {
+        step: 5,
+        title: 'REFLECT',
+        subtitle: 'Zhuge Liang Mind',
+        bullets: ['Did this move us closer to the outcome?'],
+      },
+    ],
+    reflection_prompt: 'Run the five steps on one real situation today.',
+  },
+  {
+    module_id: 'prompting',
+    title: 'How you talk to AI',
+    subtitle: 'From now on',
+    source_block: 'VI_prompting',
+    visual_type: 'compare_prompts',
+    source_excerpt: 'Weak vs strategist-level prompt — verbatim.',
+    body: ["Here's how YOU should sound:", 'That is how a CEO talks to intelligence.'],
+    comparisons: {
+      weak_label: 'Weak Prompt (Most People)',
+      weak: '"Help me make money online"',
+      strong_label: 'Your New Prompt (Strategist-Level)',
+      strong: `"I want to build a $5k/month income stream within 4 months.
+Constraints: part-time, current skills in X, starting capital $Y.
+
+Break this into:
+
+1. System map
+2. Key leverage points
+3. Highest probability strategy
+4. Risks and failure points
+5. Step-by-step execution plan
+
+Then optimize it for speed and simplicity."`,
+    },
+    reflection_prompt: 'Rewrite your last vague ask into a strategist-level prompt.',
+  },
+  {
+    module_id: 'evolution',
+    title: 'Your evolution',
+    subtitle: 'Where you are heading',
+    source_block: 'evolution',
+    visual_type: 'ascent_path',
+    source_excerpt: 'Final teaching + User → Architect + direct intelligence.',
+    body: [
+      'Because: AI can generate 100 plans. Only a strategist can choose the right one.',
+      'You are moving from: User → Operator → Strategist → Architect',
+      'Optional next steps from the source: a daily strategist training system; AI prompt templates for every domain (business, health, learning); or simulated CEO-level decision scenarios for practice — turning insight into power.',
+    ],
+    quotes: [
+      {
+        text: 'You seek a great strategist beside you.\nBut the true question is—\ncan you recognize a good strategy when you see it?',
+      },
+      {
+        text: "You don't use AI anymore.\n\nYou direct intelligence.",
+      },
+    ],
+    reflection_prompt: 'Which rung are you on today—and what one habit moves you up?',
+  },
+];
+
+export const modulesById = Object.fromEntries(modules.map((m) => [m.module_id, m])) as Record<
+  string,
+  ContentModule
+>;
+
+export function getModule(id: string): ContentModule | undefined {
+  return modulesById[id];
+}

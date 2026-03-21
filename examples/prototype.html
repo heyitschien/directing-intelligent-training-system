@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strategist OS</title>
+  <style>
+    :root {
+      --bg: #f7fafb;
+      --surface: #ffffff;
+      --surface-2: #f2f7f9;
+      --text: #1e2a33;
+      --muted: #5b6b75;
+      --line: #e4edf1;
+      --shadow: 0 12px 32px rgba(20, 42, 57, 0.08);
+      --blue: #3b82f6;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --purple: #8b5cf6;
+      --teal: #14b8a6;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --maxw: 460px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(59,130,246,.08), transparent 28%),
+        linear-gradient(180deg, #fbfdfe 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    .app {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 18px 16px 112px;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.92));
+      border: 1px solid rgba(228,237,241,0.95);
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+      padding: 22px 18px 18px;
+      position: sticky;
+      top: 10px;
+      backdrop-filter: blur(12px);
+      z-index: 10;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(59,130,246,0.08);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.05;
+      margin: 14px 0 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    .memory {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(30,42,51,.98), rgba(39,55,66,.98));
+      color: #f7fafb;
+    }
+
+    .memory .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      opacity: .72;
+      margin-bottom: 8px;
+    }
+
+    .memory strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .mini-flow {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .mini-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      border-radius: 16px;
+      padding: 11px 12px;
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .arrow {
+      text-align: center;
+      color: #8aa0ad;
+      font-size: 20px;
+      margin: 4px 0 10px;
+      user-select: none;
+    }
+
+    section {
+      margin-top: 14px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 20px 2px 12px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title span {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    details.card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    details.card > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 16px;
+      display: block;
+    }
+
+    details.card > summary::-webkit-details-marker,
+    details.nested > summary::-webkit-details-marker,
+    details.example-card > summary::-webkit-details-marker { display: none; }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 40px 1fr 24px;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .step-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: inset 0 -10px 16px rgba(0,0,0,.08);
+    }
+
+    .step-badge.blue { background: linear-gradient(180deg, #60a5fa, var(--blue)); }
+    .step-badge.green { background: linear-gradient(180deg, #34d399, var(--green)); }
+    .step-badge.amber { background: linear-gradient(180deg, #fbbf24, var(--amber)); }
+    .step-badge.red { background: linear-gradient(180deg, #f87171, var(--red)); }
+    .step-badge.purple { background: linear-gradient(180deg, #a78bfa, var(--purple)); }
+
+    .step-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .step-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 6px;
+    }
+
+    .step-sub {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .chev {
+      font-size: 20px;
+      color: var(--muted);
+      transform: translateY(2px);
+      transition: transform .2s ease;
+    }
+
+    details[open] .chev { transform: rotate(180deg) translateY(-2px); }
+
+    .card-body {
+      padding: 0 16px 18px;
+      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(242,247,249,.55), rgba(255,255,255,1));
+    }
+
+    .lead {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      margin: 16px 0 14px;
+    }
+
+    .callout {
+      border-left: 4px solid var(--blue);
+      background: rgba(59,130,246,.06);
+      padding: 12px 12px 12px 14px;
+      border-radius: 0 14px 14px 0;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 14px 0;
+    }
+
+    .callout.green { border-left-color: var(--green); background: rgba(16,185,129,.08); }
+    .callout.amber { border-left-color: var(--amber); background: rgba(245,158,11,.1); }
+    .callout.red { border-left-color: var(--red); background: rgba(239,68,68,.08); }
+    .callout.purple { border-left-color: var(--purple); background: rgba(139,92,246,.08); }
+
+    .info-grid {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .info-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      padding: 14px;
+    }
+
+    .info-box h3,
+    .info-box h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .info-box p,
+    .info-box li,
+    .nested-body p,
+    .nested-body li,
+    .example-body p,
+    .example-body li {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .info-box ul,
+    .nested-body ul,
+    .example-body ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    details.nested,
+    details.example-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.9);
+      overflow: hidden;
+    }
+
+    details.nested > summary,
+    details.example-card > summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px;
+    }
+
+    .nested-top,
+    .example-top {
+      display: grid;
+      grid-template-columns: 1fr 20px;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .nested-label,
+    .example-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .nested-title,
+    .example-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 4px;
+    }
+
+    .nested-sub,
+    .example-sub {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .nested-body,
+    .example-body {
+      padding: 0 14px 14px;
+      border-top: 1px solid var(--line);
+      background: rgba(242,247,249,.55);
+    }
+
+    .two-col {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .muted-quote {
+      margin: 14px 0 0;
+      padding: 14px;
+      border-radius: 18px;
+      background: #f8fbfc;
+      border: 1px dashed #d8e5eb;
+      color: #40515d;
+      font-size: 14px;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    .examples-intro {
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.9));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+
+    .tabbar {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 14px;
+      width: min(calc(100% - 24px), var(--maxw));
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(228,237,241,.96);
+      box-shadow: var(--shadow);
+      border-radius: 20px;
+      padding: 8px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      z-index: 20;
+    }
+
+    .tabbar a {
+      text-decoration: none;
+      color: var(--muted);
+      background: #f8fbfc;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 8px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .tabbar a:hover { color: var(--text); }
+
+    .divider-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #edf5ff;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="hero" id="top">
+      <div class="eyebrow">Strategist OS · Mobile</div>
+      <h1>Direct intelligence with clarity, structure, and calm.</h1>
+      <p>
+        This app organizes the full Strategist Operating System into one visual flow. Start with intention,
+        move into system thinking, question for leverage, act with precision, and reflect until wisdom becomes instinct.
+      </p>
+
+      <div class="memory">
+        <div class="label">Memorize the flow</div>
+        <strong>DEFINE → MODEL → INTERROGATE → EXECUTE → REFLECT</strong>
+      </div>
+
+      <div class="mini-flow">
+        <div class="mini-pill">Step 1 · Define (Yi) <span>Intent</span></div>
+        <div class="mini-pill">Step 2 · Model (Li) <span>System</span></div>
+        <div class="mini-pill">Step 3 · Interrogate <span>Questions</span></div>
+        <div class="mini-pill">Step 4 · Execute <span>Action</span></div>
+        <div class="mini-pill">Step 5 · Reflect <span>Refinement</span></div>
+      </div>
+    </header>
+
+    <section id="system">
+      <div class="section-title">
+        <h2>Core operating system</h2>
+        <span>Tap any card to expand</span>
+      </div>
+
+      <details class="card" open>
+        <summary>
+          <div class="summary-grid">
+            <div class="step-badge blue">01</div>
+            <div>
+              <div class="step-kicker">Step 1</div>
+              <div class="step-title">DEFINE (Yi)</div>
+              <p class="step-sub">Set direction before solving. This is your intent, your desired end state, and your reason for entering the problem at all.</p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+        </summary>
+        <div class="card-body">
+          <p class="lead">
+            Define answers one question first: <strong>What am I trying to accomplish?</strong> Without this step, intelligence becomes scattered.
+            With it, thinking gains direction.
+          </p>
+
+          <div class="callout">
+            <strong>Yi is your chosen aim.</strong> It is not yet the system itself. It is the intention you bring into reality: the outcome, the time horizon, the constraints, and the standard for success.
+          </div>
+
+          <div class="info-grid">
+            <div class="info-box">
+              <h3>What Define must answer</h3>
+              <ul>
+                <li>What is the outcome I want?</li>
+                <li>Why does it matter?</li>
+                <li>What are my real constraints?</li>
+                <li>How will I know this worked?</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h3>Good copy for your own prompts</h3>
+              <p>“I want to achieve <strong>X</strong> within <strong>Y</strong> conditions, while optimizing for <strong>Z</strong>.”</p>
+            </div>
+          </div>
+
+          <div class="muted-quote">
+            “Intent sets direction. If the destination is vague, even perfect maps will not save you.”
+          </div>
+        </div>
+      </details>
+
+      <div class="arrow">↓</div>
+
+      <details class="card" open>
+        <summary>
+          <div class="summary-grid">
+            <div class="step-badge green">02</div>
+            <div>
+              <div class="step-kicker">Step 2</div>
+              <div class="step-title">MODEL (Li)</div>
+              <p class="step-sub">See the structure of reality. This is where you stop reacting to surface events and begin seeing the system producing them.</p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+        </summary>
+        <div class="card-body">
+          <p class="lead">
+            Modeling is the discipline of asking: <strong>What system am I operating in?</strong> This is the heart of structured thinking.
+            Inside Model lives the full five-part framework you practiced.
+          </p>
+
+          <div class="callout green">
+            <strong>Important distinction:</strong> the goal in Define and the goal inside Model are related, but not identical.
+            Define is <em>your chosen objective</em>. The goal inside Model is <em>what this system is actually designed to do</em>.
+          </div>
+
+          <div class="stack">
+            <details class="nested" open>
+              <summary>
+                <div class="nested-top">
+                  <div>
+                    <div class="nested-label">Model framework</div>
+                    <div class="nested-title">Goal</div>
+                    <p class="nested-sub">What is this system actually trying to achieve?</p>
+                  </div>
+                  <div class="chev">⌄</div>
+                </div>
+              </summary>
+              <div class="nested-body">
+                <p>
+                  This is the system-level aim. It must describe the function of the system, not just your personal wish.
+                  A weak answer is vague. A strategist answer names quality, duration, and real-world output.
+                </p>
+                <div class="chip-row">
+                  <div class="chip">Weak: “Have energy”</div>
+                  <div class="chip">Strong: “Sustain high-quality energy throughout the day”</div>
+                </div>
+              </div>
+            </details>
+
+            <details class="nested">
+              <summary>
+                <div class="nested-top">
+                  <div>
+                    <div class="nested-label">Model framework</div>
+                    <div class="nested-title">Components</div>
+                    <p class="nested-sub">What are the parts that make this system what it is?</p>
+                  </div>
+                  <div class="chev">⌄</div>
+                </div>
+              </summary>
+              <div class="nested-body">
+                <p>
+                  Components include visible parts like people, tools, processes, and time blocks, and hidden parts like emotional state,
+                  structure, trust, incentives, and rhythm. If you miss key components, your strategy will be built on an incomplete map.
+                </p>
+              </div>
+            </details>
+
+            <details class="nested">
+              <summary>
+                <div class="nested-top">
+                  <div>
+                    <div class="nested-label">Model framework</div>
+                    <div class="nested-title">Interactions</div>
+                    <p class="nested-sub">How do the parts affect one another over time?</p>
+                  </div>
+                  <div class="chev">⌄</div>
+                </div>
+              </summary>
+              <div class="nested-body">
+                <p>
+                  Interactions create chain reactions and feedback loops. This is where patterns come from.
+                  Strategists do not merely list variables; they trace how one condition produces another.
+                </p>
+                <ul>
+                  <li>Positive loop: clarity → progress → confidence → stronger execution</li>
+                  <li>Negative loop: confusion → mistakes → frustration → avoidance</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="nested">
+              <summary>
+                <div class="nested-top">
+                  <div>
+                    <div class="nested-label">Model framework</div>
+                    <div class="nested-title">Constraints</div>
+                    <p class="nested-sub">What limits the performance of the system?</p>
+                  </div>
+                  <div class="chev">⌄</div>
+                </div>
+              </summary>
+              <div class="nested-body">
+                <p>
+                  Constraints are the reality you must design within: time, energy, environment, tools, rules, training level, attention, fatigue,
+                  and available resources. Strategy is not fantasy. Strategy is design under real conditions.
+                </p>
+              </div>
+            </details>
+
+            <details class="nested">
+              <summary>
+                <div class="nested-top">
+                  <div>
+                    <div class="nested-label">Model framework</div>
+                    <div class="nested-title">Leverage</div>
+                    <p class="nested-sub">Where does small change create disproportionate impact?</p>
+                  </div>
+                  <div class="chev">⌄</div>
+                </div>
+              </summary>
+              <div class="nested-body">
+                <p>
+                  Leverage is where strategy lives. The strategist hunts for the 20% of variables that drive 80% of outcomes.
+                  If you see leverage, you stop wasting effort and begin moving systems.
+                </p>
+                <div class="chip-row">
+                  <div class="chip">Not brute force</div>
+                  <div class="chip">Not random action</div>
+                  <div class="chip">Targeted influence</div>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <div class="muted-quote">
+            “Do not fight problems directly. Find the system producing them.”
+          </div>
+        </div>
+      </details>
+
+      <div class="arrow">↓</div>
+
+      <details class="card">
+        <summary>
+          <div class="summary-grid">
+            <div class="step-badge amber">03</div>
+            <div>
+              <div class="step-kicker">Step 3</div>
+              <div class="step-title">INTERROGATE</div>
+              <p class="step-sub">Question the system until leverage becomes visible. This is the bridge between raw information and extracted intelligence.</p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+        </summary>
+        <div class="card-body">
+          <p class="lead">
+            After you model the system, you interrogate it. You ask sharper questions than surface thinking would ever ask.
+            This is how elite questioning turns a model into strategy.
+          </p>
+
+          <div class="info-grid">
+            <div class="info-box">
+              <h3>Five elite question types</h3>
+              <ul>
+                <li><strong>First principles:</strong> What are the fundamental truths here?</li>
+                <li><strong>Blind spots:</strong> What am I not seeing?</li>
+                <li><strong>Lever identification:</strong> What matters most?</li>
+                <li><strong>Optimization:</strong> How do we make this 10x better?</li>
+                <li><strong>Strategic path:</strong> What is the most efficient sequence of moves?</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h3>Copywriting pattern</h3>
+              <p>“Given this model, what is most likely to break, what is highest leverage, and what move changes the whole field?”</p>
+            </div>
+          </div>
+
+          <div class="callout amber">
+            A weak user asks, “What should I do?” A strategist asks, “What are the leverage points, risks, and highest-probability sequence?”
+          </div>
+        </div>
+      </details>
+
+      <div class="arrow">↓</div>
+
+      <details class="card">
+        <summary>
+          <div class="summary-grid">
+            <div class="step-badge red">04</div>
+            <div>
+              <div class="step-kicker">Step 4</div>
+              <div class="step-title">EXECUTE</div>
+              <p class="step-sub">Turn leverage into motion. Action matters, but only after direction and structure are clear.</p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+        </summary>
+        <div class="card-body">
+          <p class="lead">
+            Execution is the sequence of moves that acts on leverage. Good execution is not frantic. It is chosen, ordered, and measurable.
+          </p>
+          <div class="info-grid">
+            <div class="info-box">
+              <h3>Execution questions</h3>
+              <ul>
+                <li>What is the next move?</li>
+                <li>What order should actions happen in?</li>
+                <li>Which action has the highest upside with lowest friction?</li>
+                <li>How will I measure whether this worked?</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout red">
+            Strategy without action is philosophy. Action without strategy is noise. Execution is where insight becomes reality.
+          </div>
+        </div>
+      </details>
+
+      <div class="arrow">↓</div>
+
+      <details class="card">
+        <summary>
+          <div class="summary-grid">
+            <div class="step-badge purple">05</div>
+            <div>
+              <div class="step-kicker">Step 5</div>
+              <div class="step-title">REFLECT</div>
+              <p class="step-sub">Refinement turns one action into accumulated wisdom. Reflection is how the strategist becomes sharper over time.</p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+        </summary>
+        <div class="card-body">
+          <p class="lead">
+            Reflection asks whether your action moved reality closer to the aim. This is how you stop repeating mistakes and start building judgment.
+          </p>
+          <div class="info-grid">
+            <div class="info-box">
+              <h3>Reflection prompts</h3>
+              <ul>
+                <li>What worked?</li>
+                <li>What failed?</li>
+                <li>What changed in the system?</li>
+                <li>What should I keep, remove, or refine?</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout purple">
+            Calm reflection is not hesitation. It is the discipline that converts experience into foresight.
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="examples">
+      <div class="section-title">
+        <h2>Worked examples</h2>
+        <span>Three systems you practiced</span>
+      </div>
+
+      <div class="examples-intro">
+        <div class="divider-label">How to use these</div>
+        <p class="lead" style="margin-top:0; margin-bottom:8px;">
+          Each example starts with a scenario, then walks through the five-part Model framework: Goal, Components, Interactions, Constraints, and Leverage.
+          Use them as templates for your own real-life thinking.
+        </p>
+        <p class="small">Remember: Define sets your direction. Model shows the structure. These examples are demonstrations of Step 2 in practice.</p>
+      </div>
+
+      <details class="example-card" open>
+        <summary>
+          <div class="example-top">
+            <div>
+              <div class="example-label">Example 1</div>
+              <div class="example-title">Personal Energy System</div>
+              <p class="example-sub">Scenario: Some days you wake up clear and energized. Other days you feel foggy, distracted, and low-energy. You want to understand why your energy fluctuates and how to stabilize it.</p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+        </summary>
+        <div class="example-body">
+          <div class="stack" style="margin-top:14px;">
+            <div class="info-box">
+              <h4>Goal</h4>
+              <p>Sustain high-quality physical, mental, and emotional energy throughout the day.</p>
+            </div>
+            <div class="info-box">
+              <h4>Components</h4>
+              <ul>
+                <li>Sleep quality and timing</li>
+                <li>Nutrition timing and food quality</li>
+                <li>Hydration</li>
+                <li>Movement and exercise</li>
+                <li>Stress and emotional state</li>
+                <li>Environment: light, noise, routine, space</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h4>Interactions</h4>
+              <ul>
+                <li>Poor sleep → lower energy → weaker food choices → bigger crash later</li>
+                <li>Good morning routine → stronger momentum → calmer mood → better output</li>
+                <li>Stress → mental fatigue → lower clarity → less effective decisions</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h4>Constraints</h4>
+              <ul>
+                <li>Work schedule</li>
+                <li>Physical fatigue</li>
+                <li>Limited time</li>
+                <li>Environmental inconsistency</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h4>Leverage</h4>
+              <ul>
+                <li>Sleep timing consistency</li>
+                <li>First meal quality</li>
+                <li>Early hydration</li>
+                <li>Simple morning routine</li>
+              </ul>
+            </div>
+          </div>
+          <div class="muted-quote">The lesson: do not label yourself “low energy.” Find the system conditions producing the feeling.</div>
+        </div>
+      </details>
+
+      <details class="example-card">
+        <summary>
+          <div class="example-top">
+            <div>
+              <div class="example-label">Example 2</div>
+              <div class="example-title">Learning System (ASVAB / Math)</div>
+              <p class="example-sub">Scenario: Some topics click quickly, some feel difficult, retention is inconsistent, and your performance varies. You want to understand how your learning process works so you can improve it.</p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+        </summary>
+        <div class="example-body">
+          <div class="stack" style="margin-top:14px;">
+            <div class="info-box">
+              <h4>Goal</h4>
+              <p>Build deep understanding and reliable problem-solving speed under test conditions.</p>
+            </div>
+            <div class="info-box">
+              <h4>Components</h4>
+              <ul>
+                <li>Concept understanding</li>
+                <li>Input: lessons and explanations</li>
+                <li>Practice problems</li>
+                <li>Feedback and correction</li>
+                <li>Progression structure</li>
+                <li>Focus level and emotional state</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h4>Interactions</h4>
+              <ul>
+                <li>Clear explanation → better practice → confidence → stronger retention</li>
+                <li>Confusion → mistakes → frustration → avoidance → slower growth</li>
+                <li>Good feedback → corrected thinking → higher accuracy next round</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h4>Constraints</h4>
+              <ul>
+                <li>Limited time</li>
+                <li>Mental fatigue</li>
+                <li>Topics with uneven difficulty</li>
+                <li>Performance pressure</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h4>Leverage</h4>
+              <ul>
+                <li>Principle → Example → Practice</li>
+                <li>Progressive drills from easy to elite</li>
+                <li>Immediate feedback</li>
+                <li>Extracting the pattern after each problem</li>
+              </ul>
+            </div>
+          </div>
+          <div class="muted-quote">The lesson: learning improves fastest when the system is designed well, not when effort is merely increased.</div>
+        </div>
+      </details>
+
+      <details class="example-card">
+        <summary>
+          <div class="example-top">
+            <div>
+              <div class="example-label">Example 3</div>
+              <div class="example-title">You + AI System</div>
+              <p class="example-sub">Scenario: Sometimes AI gives powerful insights, sometimes answers feel generic, and sometimes you do not know what to ask. You want to consistently extract high-quality intelligence.</p>
+            </div>
+            <div class="chev">⌄</div>
+          </div>
+        </summary>
+        <div class="example-body">
+          <div class="stack" style="margin-top:14px;">
+            <div class="info-box">
+              <h4>Goal</h4>
+              <p>Consistently extract high-quality, actionable intelligence that improves thinking, decisions, and execution.</p>
+            </div>
+            <div class="info-box">
+              <h4>Components</h4>
+              <ul>
+                <li>You: clarity, structure, patience, context</li>
+                <li>AI: reasoning, pattern synthesis, response generation</li>
+                <li>Prompt quality</li>
+                <li>Response quality</li>
+                <li>Feedback loop and refinement</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h4>Interactions</h4>
+              <ul>
+                <li>Clear prompt → strong answer → better thinking → stronger next prompt</li>
+                <li>Vague prompt → generic answer → confusion → weaker follow-up</li>
+                <li>More context → more targeted reasoning → more useful output</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h4>Constraints</h4>
+              <ul>
+                <li>Unclear thinking</li>
+                <li>Lack of structure</li>
+                <li>Limited context</li>
+                <li>Fatigue and attention limits</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <h4>Leverage</h4>
+              <ul>
+                <li>Clear intent before asking</li>
+                <li>Structured prompts</li>
+                <li>Iterating instead of accepting the first answer</li>
+                <li>Asking for principles, blind spots, and leverage points</li>
+              </ul>
+            </div>
+          </div>
+          <div class="muted-quote">The lesson: AI often mirrors the quality of your thinking. Better input creates better intelligence.</div>
+        </div>
+      </details>
+    </section>
+
+    <section id="lesson">
+      <div class="section-title">
+        <h2>Daily review</h2>
+        <span>One screen summary</span>
+      </div>
+
+      <div class="examples-intro">
+        <div class="divider-label">Review prompt</div>
+        <p class="lead" style="margin-top:0;">
+          Before entering any problem, ask: <strong>What do I want?</strong>
+          Then ask: <strong>What system is producing this situation?</strong>
+          Then ask: <strong>What am I missing, and where is the leverage?</strong>
+        </p>
+        <div class="chip-row">
+          <div class="chip">Define the aim</div>
+          <div class="chip">Model the system</div>
+          <div class="chip">Interrogate for leverage</div>
+          <div class="chip">Execute with sequence</div>
+          <div class="chip">Reflect and refine</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar">
+    <a href="#top">Top</a>
+    <a href="#system">System</a>
+    <a href="#examples">Examples</a>
+    <a href="#lesson">Review</a>
+  </nav>
+</body>
+</html>
