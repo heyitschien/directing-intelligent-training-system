@@ -1,11 +1,11 @@
 {
   "name": "directing-intelligent-training-system",
   "private": true,
-  "description": "Monorepo: Next.js Strategist OS (web) + Expo mobile app",
+  "description": "Strategist OS — Next.js workshop app (responsive web)",
   "scripts": {
     "lint": "npm run lint --prefix web",
-    "typecheck": "npm run typecheck --prefix web && npm run typecheck --prefix mobile",
+    "typecheck": "npm run typecheck --prefix web",
     "build": "npm run build --prefix web",
-    "validate": "npm run lint --prefix web && npm run typecheck --prefix web && npm run build --prefix web && npm run typecheck --prefix mobile"
+    "validate": "npm run lint --prefix web && npm run typecheck --prefix web && npm run build --prefix web"
   }
 }
