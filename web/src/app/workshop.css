@@ -19,18 +19,18 @@
   --radius-xl: 24px;
   --radius-lg: 18px;
   --radius-md: 14px;
-  --maxw: 460px;
-  /* Vertical rhythm — markdown-style breathing room */
-  --rhythm-section: 22px;
-  --rhythm-block: 18px;
-  --rhythm-tight: 12px;
 }
 
 .workshop-root * {
   box-sizing: border-box;
 }
 
+/* Layout tokens live on the app shell so they always win over Tailwind / :root resets. */
 .workshop-root {
+  --maxw: 460px;
+  --rhythm-section: 22px;
+  --rhythm-block: 18px;
+  --rhythm-tight: 12px;
   scroll-behavior: smooth;
   font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
@@ -42,11 +42,18 @@
 }
 
 .workshop-app {
+  width: 100%;
   max-width: var(--maxw);
   margin: 0 auto;
   min-height: 100vh;
   padding: 18px 16px 112px;
   overflow-x: visible;
+}
+
+.workshop-hero-top,
+.workshop-hero-intro,
+.workshop-hero-side {
+  min-width: 0;
 }
 
 /* Sticky caused “stuck” feel with flex parents; keep same look, scroll with page */
@@ -75,7 +82,7 @@
   text-transform: uppercase;
 }
 
-.workshop-hero h1 {
+.workshop-hero-intro h1 {
   font-size: 30px;
   line-height: 1.05;
   margin: 14px 0 10px;
@@ -83,7 +90,7 @@
   font-weight: 800;
 }
 
-.workshop-hero p {
+.workshop-hero-intro p {
   margin: 0;
   color: var(--muted);
   line-height: 1.55;
@@ -127,10 +134,20 @@
   margin-top: var(--rhythm-block);
 }
 
+.workshop-mini-flow > * {
+  min-width: 0;
+}
+
+.workshop-hero-side .workshop-mini-flow {
+  margin-top: var(--rhythm-block);
+}
+
 .workshop-mini-pill {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 10px;
   border: 1px solid var(--line);
   background: var(--surface-2);
   border-radius: 16px;
@@ -139,6 +156,19 @@
   color: var(--text);
   font-weight: 700;
   line-height: 1.4;
+}
+
+.workshop-mini-pill-label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.workshop-mini-pill-tag {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .workshop-arrow {
@@ -584,8 +614,7 @@
 }
 
 /* ——— Responsive: tablet, laptop, desktop ———
-   Mobile-first; scale content width, type, and grids so the workshop
-   feels native on medium and large screens without a fixed phone column. */
+   Tokens on .workshop-root so max-width always tracks the layout shell. */
 
 @media (min-width: 480px) {
   .workshop-app {
@@ -594,8 +623,8 @@
 }
 
 @media (min-width: 640px) {
-  :root {
-    --maxw: 560px;
+  .workshop-root {
+    --maxw: 600px;
     --rhythm-section: 24px;
     --rhythm-block: 19px;
   }
@@ -609,11 +638,11 @@
     border-radius: 30px;
   }
 
-  .workshop-hero h1 {
+  .workshop-hero-intro h1 {
     font-size: clamp(1.875rem, 2.2vw + 1.1rem, 2.25rem);
   }
 
-  .workshop-hero p {
+  .workshop-hero-intro p {
     font-size: 16px;
     line-height: 1.6;
   }
@@ -627,7 +656,7 @@
   }
 
   .workshop-mini-flow {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 
   .workshop-info-grid {
@@ -641,8 +670,8 @@
 }
 
 @media (min-width: 768px) {
-  :root {
-    --maxw: 640px;
+  .workshop-root {
+    --maxw: 700px;
   }
 
   .workshop-lead {
@@ -663,8 +692,8 @@
 }
 
 @media (min-width: 900px) {
-  :root {
-    --maxw: 760px;
+  .workshop-root {
+    --maxw: min(840px, calc(100vw - 48px));
     --rhythm-section: 28px;
     --rhythm-block: 22px;
   }
@@ -673,7 +702,7 @@
     padding: 28px max(28px, calc((100vw - var(--maxw)) / 2)) 128px;
   }
 
-  .workshop-hero h1 {
+  .workshop-hero-intro h1 {
     font-size: clamp(2rem, 2.5vw + 1rem, 2.5rem);
   }
 
@@ -690,7 +719,7 @@
   }
 
   .workshop-mini-flow {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 
   .workshop-step-badge {
@@ -706,13 +735,47 @@
   }
 }
 
-@media (min-width: 1100px) {
-  :root {
-    --maxw: 880px;
+/* Two-column hero: copy left, flow + steps right */
+@media (min-width: 1024px) {
+  .workshop-root {
+    --maxw: min(960px, calc(100vw - 56px));
   }
 
   .workshop-hero {
-    padding: 30px 28px 26px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "heroTop heroTop"
+      "heroIntro heroSide";
+    column-gap: 32px;
+    row-gap: 8px;
+    align-items: start;
+    padding: 28px 28px 26px;
+  }
+
+  .workshop-hero-top {
+    grid-area: heroTop;
+  }
+
+  .workshop-hero-intro {
+    grid-area: heroIntro;
+  }
+
+  .workshop-hero-side {
+    grid-area: heroSide;
+  }
+
+  .workshop-hero-intro h1 {
+    margin-top: 4px;
+  }
+
+  .workshop-hero-side .workshop-memory {
+    margin-top: 0;
+  }
+
+  .workshop-hero-side .workshop-mini-flow {
+    margin-top: var(--rhythm-tight);
+    grid-template-columns: 1fr;
   }
 
   .workshop-eyebrow {
@@ -726,32 +789,40 @@
   .workshop-step-title {
     font-size: 22px;
   }
+}
 
-  /* Five-step pills: one row on wide layouts when space allows */
-  .workshop-mini-flow {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+@media (min-width: 1200px) {
+  .workshop-root {
+    --maxw: min(1100px, calc(100vw - 64px));
+  }
+
+  .workshop-hero {
+    column-gap: 40px;
+    padding: 30px 32px 28px;
+  }
+
+  /* Side column: compact vertical stack of step pills */
+  .workshop-hero-side .workshop-mini-flow {
+    grid-template-columns: 1fr;
   }
 
   .workshop-mini-pill {
-    font-size: 12px;
-    padding: 12px 10px;
-    line-height: 1.35;
-    gap: 6px;
+    padding: 12px 14px;
   }
 }
 
 @media (min-width: 1280px) {
-  :root {
-    --maxw: 960px;
+  .workshop-root {
+    --maxw: min(1200px, calc(100vw - 72px));
   }
 
   .workshop-app {
     padding: 32px max(32px, calc((100vw - var(--maxw)) / 2)) 132px;
   }
 
-  .workshop-hero h1 {
+  .workshop-hero-intro h1 {
     font-size: 2.625rem;
-    max-width: 22ch;
+    letter-spacing: -0.035em;
   }
 
   .workshop-tabbar {
@@ -767,14 +838,13 @@
 }
 
 @media (min-width: 1536px) {
-  :root {
-    --maxw: min(1040px, calc(100vw - 80px));
+  .workshop-root {
+    --maxw: min(1280px, calc(100vw - 96px));
   }
 }
 
-/* Respect users who prefer less horizontal stretch on ultra-wide screens */
 @media (min-width: 1800px) {
-  :root {
-    --maxw: 1080px;
+  .workshop-root {
+    --maxw: min(1320px, calc(100vw - 120px));
   }
 }

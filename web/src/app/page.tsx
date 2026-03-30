@@ -3,37 +3,51 @@ export default function Home() {
     <>
       <main className="workshop-app">
         <header className="workshop-hero" id="top">
-          <div className="workshop-eyebrow">🧠 Strategist OS · Mobile</div>
-          <h1>🧠 Direct intelligence with clarity, structure, and calm.</h1>
-          <p>
-            This app organizes the full Strategist Operating System into one visual flow. Start with
-            intention, move into system thinking, question for leverage, act with precision, and
-            reflect until wisdom becomes instinct.
-          </p>
-          <hr className="workshop-hero-break" aria-hidden />
-
-          <div className="workshop-memory">
-            <div className="workshop-memory-label">🧠 Memorize the flow</div>
-            <strong>
-              🧭 DEFINE → 🧩 MODEL → ⚔️ INTERROGATE → ⚡ EXECUTE → 🧘 REFLECT
-            </strong>
+          <div className="workshop-hero-top">
+            <div className="workshop-eyebrow">🧠 Strategist OS</div>
           </div>
+          <div className="workshop-hero-intro">
+            <h1>🧠 Direct intelligence with clarity, structure, and calm.</h1>
+            <p>
+              This app organizes the full Strategist Operating System into one visual flow. Start with
+              intention, move into system thinking, question for leverage, act with precision, and
+              reflect until wisdom becomes instinct.
+            </p>
+            <hr className="workshop-hero-break" aria-hidden />
+          </div>
+          <div className="workshop-hero-side">
+            <div className="workshop-memory">
+              <div className="workshop-memory-label">🧠 Memorize the flow</div>
+              <strong>
+                🧭 DEFINE → 🧩 MODEL → ⚔️ INTERROGATE → ⚡ EXECUTE → 🧘 REFLECT
+              </strong>
+            </div>
 
-          <div className="workshop-mini-flow">
-            <div className="workshop-mini-pill">
-              🧭 Step 1 · Define (Yi) <span className="text-[var(--muted)]">Intent</span>
-            </div>
-            <div className="workshop-mini-pill">
-              🧩 Step 2 · Model (Li) <span className="text-[var(--muted)]">System</span>
-            </div>
-            <div className="workshop-mini-pill">
-              ⚔️ Step 3 · Interrogate <span className="text-[var(--muted)]">Questions</span>
-            </div>
-            <div className="workshop-mini-pill">
-              ⚡ Step 4 · Execute <span className="text-[var(--muted)]">Action</span>
-            </div>
-            <div className="workshop-mini-pill">
-              🧘 Step 5 · Reflect <span className="text-[var(--muted)]">Refinement</span>
+            <div className="workshop-mini-flow">
+              <div className="workshop-mini-pill">
+                <span className="workshop-mini-pill-label">
+                  🧭 Step 1 · Define (Yi)
+                </span>
+                <span className="workshop-mini-pill-tag">Intent</span>
+              </div>
+              <div className="workshop-mini-pill">
+                <span className="workshop-mini-pill-label">
+                  🧩 Step 2 · Model (Li)
+                </span>
+                <span className="workshop-mini-pill-tag">System</span>
+              </div>
+              <div className="workshop-mini-pill">
+                <span className="workshop-mini-pill-label">⚔️ Step 3 · Interrogate</span>
+                <span className="workshop-mini-pill-tag">Questions</span>
+              </div>
+              <div className="workshop-mini-pill">
+                <span className="workshop-mini-pill-label">⚡ Step 4 · Execute</span>
+                <span className="workshop-mini-pill-tag">Action</span>
+              </div>
+              <div className="workshop-mini-pill">
+                <span className="workshop-mini-pill-label">🧘 Step 5 · Reflect</span>
+                <span className="workshop-mini-pill-tag">Refinement</span>
+              </div>
             </div>
           </div>
         </header>
@@ -41,7 +55,7 @@ export default function Home() {
         <section className="workshop-section" id="system">
           <div className="workshop-section-title">
             <h2>🧩 Core operating system</h2>
-            <span>Tap any card to expand</span>
+            <span>Tap or click any card to expand</span>
           </div>
 
           <details className="workshop-details-card">
