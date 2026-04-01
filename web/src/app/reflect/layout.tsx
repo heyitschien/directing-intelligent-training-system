@@ -13,6 +13,9 @@ export const viewport: Viewport = {
   themeColor: "#8b5cf6",
 };
 
+/** Reflection uses Neon at request time; avoid static prerender at build (no DATABASE_URL there). */
+export const dynamic = "force-dynamic";
+
 export default function ReflectLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
