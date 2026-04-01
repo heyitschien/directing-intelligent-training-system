@@ -1,0 +1,10 @@
+{
+  "name": "Strategist Reflection",
+  "short_name": "Reflect",
+  "description": "Monthly reflection — daily capture and weekly reviews",
+  "start_url": "/reflect/today",
+  "display": "standalone",
+  "background_color": "#18181b",
+  "theme_color": "#8b5cf6",
+  "orientation": "portrait-primary"
+}

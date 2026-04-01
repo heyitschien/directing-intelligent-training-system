@@ -1,0 +1,111 @@
+/* Reflection app — calm dark UI, purple accent */
+
+.reflect-root {
+  --reflect-accent: #8b5cf6;
+  --reflect-accent-muted: rgba(139, 92, 246, 0.25);
+  --reflect-surface: #18181b;
+  --reflect-card: #27272a;
+  --reflect-border: #3f3f46;
+  --reflect-miss: #a1a1aa;
+  background: var(--reflect-surface);
+  color: #fafafa;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.reflect-root a {
+  color: var(--reflect-accent);
+}
+
+.reflect-card {
+  background: var(--reflect-card);
+  border: 1px solid var(--reflect-border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.reflect-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  background: var(--reflect-accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.reflect-btn.secondary {
+  background: transparent;
+  border: 1px solid var(--reflect-border);
+  color: #e4e4e7;
+}
+
+.reflect-input,
+.reflect-textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--reflect-border);
+  background: #09090b;
+  color: #fafafa;
+  padding: 0.75rem;
+  min-height: 44px;
+  font: inherit;
+}
+
+.reflect-textarea {
+  min-height: 100px;
+}
+
+.reflect-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #a1a1aa;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.reflect-miss-block {
+  /* neutral — not error red */
+  border-color: var(--reflect-border);
+}
+
+.reflect-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 0;
+  background: #09090b;
+  border-top: 1px solid var(--reflect-border);
+  padding: 0.35rem 0;
+  padding-bottom: max(0.35rem, env(safe-area-inset-bottom));
+  z-index: 50;
+}
+
+.reflect-bottom-nav a {
+  flex: 1;
+  text-align: center;
+  padding: 0.65rem 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #a1a1aa;
+  text-decoration: none;
+}
+
+.reflect-bottom-nav a[data-active="true"] {
+  color: var(--reflect-accent);
+}
+
+.reflect-hero {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
