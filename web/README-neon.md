@@ -12,7 +12,11 @@ Personal project created via Neon MCP.
 
 ## Vercel
 
-1. Import the GitHub repo; set **Root Directory** to `web`.
-2. Add environment variable `DATABASE_URL` (same pooler string as local).
+1. New Project → import `directing-intelligent-training-system` (or your fork).
+2. **Root Directory:** `web` (monorepo).
+3. **Environment variables:** `DATABASE_URL` = Neon pooled connection string (Production).
+4. Deploy. Open `/reflect` on the deployment URL.
 
 Do not commit `.env.local` or paste passwords into markdown.
+
+If this Neon password was ever exposed in chat or logs, rotate it in the Neon console.
